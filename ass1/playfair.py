@@ -4,11 +4,11 @@ import numpy as np
 #########################  passed arg1 is string to encrypt, passed arg2 is key  #########################
 
 if len(sys.argv)<2: # runs with defaults with no params passed
-  print("less than two args passed. using defaults.\ntry passing two args like this : python3 playfair.py MESSAGE 'CIPHER KEY'")
-  message = "THIS IS THE MESSAGE 0O"
+  print("less than two args passed. using defaults.\ntry passing two args like this : python3 playfair.py MESSAGE 'CIPHER KEY'\n")
+  message = "MARY HAS A LITTLE LAMB ITS FLEECE AS WHITE AS SNOW"
   print(f"message : '{message}'")
   message = message.replace('0', 'O')
-  key = "A REALLY GOODKEY 123"
+  key = "TOMATOJUICE"
   print(f"key : '{key}'")
   key = key.replace('0', 'O')
 
@@ -59,3 +59,16 @@ print(f"message_pairs: \n{message_pairs}")
 
 #########################  encrypt #########################
 
+encrypted_pairs = []
+
+for pair in message_pairs:
+  char_one_coords = np.argwhere(cipher_grid == pair[0])[0]
+  char_two_coords = np.argwhere(cipher_grid == pair[1])[0]
+  if char_one_coords[0]==char_two_coords[0]: # same row, increment column index with modulo 6 to get excryption.
+    encrypted_pairs.append([cipher_grid[char_one_coords[0]][(char_one_coords[1]+1)%6], cipher_grid[char_two_coords[0]][(char_two_coords[1]+1)%6]])
+  elif char_one_coords[1]==char_two_coords[1]: # same col, increment row index with modulo 6 to get excryption.
+    encrypted_pairs.append([cipher_grid[(char_one_coords[0]+1)%6][char_one_coords[1]], cipher_grid[(char_two_coords[0]+1)%6][char_two_coords[1]]])
+  else: # otherwise, encryption is the origional coords, but the other coordinates column index.
+    encrypted_pairs.append([cipher_grid[(char_one_coords[0])][char_two_coords[1]], cipher_grid[(char_two_coords[0])][char_one_coords[1]]])
+
+print(f"\nencrypted_pairs: \n{encrypted_pairs}")
