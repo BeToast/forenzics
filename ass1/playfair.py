@@ -1,3 +1,6 @@
+# its on github
+##### https://github.com/BeToast/forenzics/blob/main/ass1/playfair.py ######
+
 import sys, re, string
 import numpy as np
 
