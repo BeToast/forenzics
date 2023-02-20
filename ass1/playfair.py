@@ -8,10 +8,10 @@ import numpy as np
 
 if len(sys.argv)<2: # runs with defaults with no params passed
   print("less than two args passed. using defaults.\ntry passing two args like this : python3 playfair.py MESSAGE 'CIPHER KEY'\n")
-  message = "MARY HAS A LITTLE LAMB ITS FLEECE AS WHITE AS SNOW"
+  message = "BBB"
   print(f"message : '{message}'")
   message = message.replace('0', 'O')
-  key = "TOMATOJUICE"
+  key = "A"
   print(f"key : '{key}'")
   key = key.replace('0', 'O')
 
